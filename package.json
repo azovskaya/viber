@@ -19,7 +19,8 @@
     "@solana/web3.js": "latest",
     "buffer": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "bs58": "latest"
   },
   "devDependencies": {
     "@types/react": "latest",
