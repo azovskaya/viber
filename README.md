@@ -69,3 +69,12 @@ Open the local Vite URL, connect Phantom, switch Phantom to Solana devnet, use t
 ## Security boundary
 
 This repository intentionally targets **devnet only**. Do not point it at mainnet without replacing the MVP decision rule with a verifiable TWAP + executor design and completing a security review.
+
+
+## Deployment
+
+The repository includes a GitHub Pages workflow. A push to `main` builds the Vite app and publishes the devnet MVP at:
+
+`https://azovskaya.github.io/viber/`
+
+For proposal creation, configure a devnet SPL governance mint. Without it, the public build still loads markets, connects Phantom, and exposes the devnet faucet/trading UI, but proposal creation remains gated.
