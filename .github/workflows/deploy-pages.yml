@@ -1,0 +1,61 @@
+name: Deploy Futarchy MVP to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SOLANA_RPC: https://api.devnet.solana.com
+          VITE_PM_AMM_PROGRAM_ID: GV1FMGHRYBjQLaghE5fnGuYCuCcpdt3GD5xEX3TwN16y
+          VITE_PM_AMM_COLLATERAL_MINT: 3WQ8hCqTNwjrh8WzE2XyoZoUrd1miPcwWfMkmFPUMEWZ
+          VITE_MIN_PROPOSAL_TOKENS: "1"
+          VITE_DECISION_THRESHOLD_BPS: "6000"
+          VITE_MARKET_DURATION_SECS: "86400"
+          VITE_BOOTSTRAP_LIQUIDITY_MUSDC: "50"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
