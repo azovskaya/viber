@@ -1,0 +1,64 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f4f4ef;
+  background: #0b0d0c;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at 20% -10%, #1d2b26 0, #0b0d0c 38%); }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 72px; }
+.hero { display: flex; justify-content: space-between; gap: 28px; align-items: flex-start; padding: 28px 0 42px; }
+.hero h1 { font-size: clamp(42px, 8vw, 88px); letter-spacing: -.06em; margin: 5px 0 14px; line-height: .92; }
+.hero p { max-width: 760px; color: #a8b0aa; font-size: 18px; line-height: 1.55; margin: 0; }
+.eyebrow { font-size: 11px; letter-spacing: .18em; color: #8bffb0; font-weight: 800; }
+.statusGrid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid #232925; border-radius: 18px; overflow: hidden; background: #101311; }
+.stat { padding: 18px; border-right: 1px solid #232925; min-width: 0; }
+.stat:last-child { border-right: 0; }
+.stat span { display: block; color: #737d76; font-size: 12px; margin-bottom: 7px; }
+.stat b { font-size: 14px; overflow-wrap: anywhere; }
+.panel { margin-top: 22px; border: 1px solid #252b27; background: rgba(17, 20, 18, .88); border-radius: 20px; padding: 22px; }
+.actionPanel { display: grid; grid-template-columns: 1.25fr 1.3fr auto auto; align-items: center; gap: 12px; }
+.actionPanel h2, .marketHeader h2, .caveat h2 { margin: 0 0 5px; }
+.actionPanel p, .caveat p { margin: 0; color: #818c84; line-height: 1.55; }
+input { border: 1px solid #313a34; border-radius: 12px; background: #0b0e0c; color: #f4f4ef; padding: 13px 14px; outline: none; width: 100%; }
+input:focus { border-color: #76e896; box-shadow: 0 0 0 3px rgba(118, 232, 150, .1); }
+button { border: 0; border-radius: 12px; padding: 13px 16px; background: #86f3a7; color: #07110a; font-weight: 800; white-space: nowrap; }
+button.secondary { background: #191e1b; color: #d6dbd7; border: 1px solid #2a312c; }
+button.danger { background: #27201f; color: #ff9c8f; border: 1px solid #4c2f2b; }
+.notice { margin-top: 16px; padding: 13px 16px; border-left: 3px solid #86f3a7; background: #111713; color: #cbd4ce; border-radius: 8px; overflow-wrap: anywhere; }
+.marketHeader { display: flex; justify-content: space-between; align-items: flex-end; margin: 42px 0 14px; }
+.marketHeader h2 { font-size: 32px; }
+.markets { display: grid; gap: 14px; }
+.market { border: 1px solid #252b27; border-radius: 20px; padding: 22px; background: #0f1210; }
+.marketTop { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; }
+.market h3 { font-size: 22px; margin: 10px 0 6px; }
+.market small { color: #69746c; }
+.pill { display: inline-block; border: 1px solid #2a3f31; background: #122017; color: #8bffb0; border-radius: 999px; padding: 5px 9px; font-size: 10px; letter-spacing: .08em; font-weight: 800; }
+.probability { text-align: right; min-width: 140px; }
+.probability span { display: block; color: #6f7a72; font-size: 12px; }
+.probability b { display: block; font-size: 36px; letter-spacing: -.04em; margin-top: 3px; }
+.bar { height: 8px; margin: 20px 0; background: #202522; border-radius: 999px; overflow: hidden; }
+.bar div { height: 100%; background: linear-gradient(90deg, #5adc83, #abffc3); }
+.tradeRow { display: grid; grid-template-columns: 110px auto auto auto 1fr; gap: 10px; align-items: center; }
+.tradeRow span { color: #747f77; font-size: 12px; }
+.empty { border: 1px dashed #2b332e; padding: 40px; border-radius: 20px; color: #717c74; text-align: center; }
+.caveat { margin-top: 34px; }
+@media (max-width: 900px) {
+  .statusGrid { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n+2) { border-bottom: 1px solid #232925; }
+  .actionPanel { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .shell { width: min(100% - 20px, 1180px); padding-top: 16px; }
+  .hero { flex-direction: column; }
+  .statusGrid { grid-template-columns: 1fr; }
+  .stat { border-right: 0; border-bottom: 1px solid #232925; }
+  .marketTop { flex-direction: column; }
+  .probability { text-align: left; }
+  .tradeRow { grid-template-columns: 1fr auto; }
+  .tradeRow button { grid-column: span 2; }
+}
